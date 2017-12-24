@@ -1,0 +1,57 @@
+﻿<!-- MODAL 
+ si visible es true se mostrará el modal.
+ (setVisible)="this.mostrarModal = $event" : permite que desde el componente hijo, se actulize la variable visible del padre.
+ [visible]="mostrarModal" : permite cambiar la variable clickWhatsapp desde el componente padre para que la consulte el hijo (modalw).
+-->
+<modal-whatsapp (setVisible)="this.mostrarModal = $event" [visible]="mostrarModal"></modal-whatsapp>
+
+<!--  MENU SECUNDARIO !-->
+<div class="container">
+    <nav> <!-- *ngIf="!rerender" -->
+        <input type="checkbox" id="css-toggle-menu" name="css-toggle-menu">
+        <ul class="main">
+            <li (click)="moveToIndex()">Inicio</li>
+            <li (click)="moveToNuestros()">Nuestros Productos</li>
+            <li (click)="goContact()">Contacto</li>
+            <li (click)="abreModalWhatsapp()" id="idmodal">Whatsapp</li>
+            <li (click)="moveToBuscador()">Buscador</li>
+        </ul>
+        <label for="css-toggle-menu" id="css-toggle-menu"></label>
+    </nav>
+    
+    <div class="tutorial">
+        <ul>
+            <li (click)="moveToIndex()" class="nav-enlaces">Inicio</li>
+            <li class="nav-enlaces">
+                Nuestros Productos <i class="fa fa-angle-down"></i>
+                <ul>
+                    <li *ngFor="let choice of icategoria" (click)="selectCategoria(choice)">{{choice.nombre}}<img src="{{choice.ico.url}}" /></li>
+                </ul>
+            </li>
+            <li class="nav-enlaces">
+                Oferta Especial <!--> li class="fa fa-angle-down" *ngFor="let nom of nombres"></li> !-->
+                <ul>
+                    <li>{{items2[0]}}<span>{{items3[0]}}€</span></li>
+                    <li>{{items2[1]}}<span>{{items3[1]}}€</span></li>
+                    <li>{{items2[2]}}<span>{{items3[2]}}€</span></li>
+                </ul>
+            </li>
+            <li (click)="goContact()" class="nav-enlaces">Contacto</li>
+            <li></li>
+            <li class="iconados">
+                <a class="fa fa-search"></a><!-->input type="text" name="search" placeholder="Buscar"-->
+                <ng2-completer [datasource]="dataService" [minSearchLength]="0" placeholder="Buscar" name="search" type="text" class="completer-input" (click)="cargarBuscador($event)" (selected)="moveToProducto($event)"></ng2-completer>
+                <!-- Search Filled icon by Icons8 -->
+            </li>
+            <li class="iconados" (click)="abreModalWhatsapp()"><a class="fa fa-whatsapp" href="#"></a>Llámanos</li>
+        </ul>
+        <div class="slider"></div>
+        <div class="information">
+            <p>
+                Carnicería Felipe, es una empresa familiar de varias generaciones. Nuestros productos son exclusivos, la elaboración es artesanal y propia.
+                Ofrecemos un gran surtido de las mejores carnes y embutidos a precios sin competencia.
+                Atendemos pedidos telefónicos
+            </p>
+        </div>
+    </div>
+</div>

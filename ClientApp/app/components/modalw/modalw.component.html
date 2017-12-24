@@ -1,0 +1,45 @@
+﻿    <!-- MODAL WHATSAPP -->
+<div *ngIf="visible===true" id="idWhatsapp" class="w3-modal w3-animate-opacity modal-whatsapp">
+    <div id="nodatos" class="w3-panel w3-blue w3-display-container">
+        <span onclick="this.parentElement.style.display='none'"
+              class="w3-button w3-blue w3-large w3-display-topright">&times;</span>
+        <div [innerHTML]="modalContainer"></div>
+    </div>
+    <div class="w3-modal-content w3-card-4">
+        <header class="w3-container w3-teal">
+            <span (click)="cerrarModal()"
+                  class="w3-button w3-large w3-display-topright">&times;</span>
+            <h2>Con este servicio, puede hacer su pedido por Whatsapp al número: </h2>
+        </header>
+        <div id="listaProductos">
+            <ul *ngFor="let producto of data" class="w3-ul w3-large"> <!-- [innerHTML]="data" *ngFor="let dcat of modelproducto" -->
+                <ng-container *ngIf="producto.fav===true">
+                    <li>Producto | {{producto.nombre}}</li>
+                    <li>Unidades | {{producto.cantidad}}</li>
+                    <li class='w3-bottombar'>Precio | {{producto.precio}}€ x {{producto.cantidad}} = {{addSum(producto.cantidad,producto.precio)}}€</li>
+                </ng-container>
+            </ul>
+        </div>
+        <div class="w3-container">
+            <ng-container>
+                <button class="col-lg-12 w3-btn w3-margin-bottom" style="font-size:24px;" >
+                    <i class="fa fa-whatsapp" style="padding-right:5px;color:green;font-size:3.1em">
+                    </i>
+                    <span style="color:black" (click)="checkData()">Enviar Whatsapp con lista de compra</span>
+                </button>
+            </ng-container>
+
+                <span class="col-lg-12">Número para llamar: <a href="tel:+647508186">647508186</a></span>
+            <span class="w3-green col-lg-12">Total |
+                <span class="w3-tag w3-jumbo">
+                    <span class="w3-xlarge">{{calcularTotal()}}</span>
+                </span>
+            €</span>
+
+        </div>
+        <footer class="w3-container w3-teal">
+            <p>En Carnicería Felípe queremos ofrecerle el mejor servicio y queremos facilitarle al máximo sus compras. No dude en comunicanos sus inquietudes e intentaremos facilitarle al máximo su pedido.</p>
+        </footer>
+    </div>
+</div>
+<!-- FINAL MODAL WHATSAPP -->

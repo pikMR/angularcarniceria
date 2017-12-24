@@ -1,0 +1,94 @@
+<!-- (categoria seleccionada) si existe la categoria entra si no. container-prods no está especificado... -->
+    <div class="container-prods" *ngIf="modelcategoria">
+  <div class="w3-card-4">
+    <div class="panel panel-default effect{{random}}">
+      <h3 class="masked">{{modelcategoria.nombre}}</h3>
+      <div class="panel-body">
+        <div class="w3-display-container w3-text-white"><img src="{{modelcategoria.imagen.url}}" class="img-responsive" style="top:-50px;opacity:0.3"></div>
+        {{modelcategoria.descripcion}}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- AL HACER CLICK EN CATEGORIA MUESTRA CADA ELEMENTO CON ESTA PLANTILLA -->
+<div class="w3-row-padding" *ngIf="modelproducto">
+  <div *ngFor="let dcat of modelproducto" class="w3-third w3-center">
+    <div class="panel panel-default effect6">
+      <img src="{{modelcategoria.imagen.url}}" class="img-responsive" style="top:-50px;opacity:0.3">
+      <div class="w3-xlarge w3-display-bottomleft w3-padding">{{dcat.Nombre}}</div>
+    </div>
+
+    <table class="w3-table-all w3-centered">
+      <tr>
+        <th>
+          Precio
+        </th>
+          <th>
+              Cesta
+          </th>
+        <th>
+          Stock
+        </th>
+      </tr>
+      <tr>
+        <td><h3> {{dcat.Precio}}€/KG </h3></td>
+        <td>
+           <contador-producto [precio]="dcat.Precio" [nombre]="dcat.Nombre" [id]="dcat.Id"></contador-producto>
+        </td>
+        <td><h3>{{dcat.UnidadesStock}}</h3></td>
+      </tr>
+    </table>
+
+  </div>
+</div>
+
+<!-- Todas las categorias SOLO RESPONSIVE -->
+<div class="container-prods" *ngIf="modelcategorias">
+  <div class="col-sm-6 col-sm-offset-3" *ngFor="let icategoria of modelcategorias">
+    <div class="panel panel-default effect{{random}}">
+      <a href="/categoria/{{icategoria.id_categoria}}/{{icategoria.nombre}}">
+      <img src="{{icategoria.imagen.url}}" class="img-responsive" />
+        </a>
+      <div class="panel-body">
+        <div class="pull-left"></div>
+        {{icategoria.descripcion}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Producto Concreto BUSQUEDA DE UN ELEMENTO EN EL BUSCADOR -->
+<div class="container-prods" *ngIf="modelindividual">
+  <div class="panel panel-default effect6">
+    <img src="{{modelcategoria.imagen.url}}" class="img-responsive" style="top:-50px;opacity:0.3">
+    <div class="w3-xlarge w3-display-bottomleft w3-padding">{{modelindividual.Nombre}}</div>
+  </div>
+  <table class="w3-table-all w3-centered">
+    <tr>
+      <th>
+        Precio
+      </th>
+      <th>
+        Stock
+      </th>
+    </tr>
+    <tr>
+      <td><h3> {{modelindividual.Precio}}€/KG </h3></td>
+      <td><h3>{{modelindividual.UnidadesStock}}</h3></td>
+    </tr>
+  </table>
+  <button class="more-productos" style="vertical-align:middle" (click)="moveToCategoria()"><span>Mas resultados para Articulos de tipo {{modelcategoria.nombre}}</span></button>
+</div>
+
+
+<!-->div class="panel-footer clearfix">
+  <div class="pull-right">
+    <div class="checkbox">
+      <label>
+        <input value="1" checked type="checkbox"> Show Preview
+      </label>
+    </div>
+  </div>
+</div!-->
+
+

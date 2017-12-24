@@ -1,0 +1,32 @@
+<!-- 
+<modal-whatsapp [clickWhatsapp]="bannerClickWhatsapp" (onHide)="this.bannerClickWhatsapp = $event"></modal-whatsapp>
+-->
+<div id="modalInstrucciones" class="w3-panel w3-blue w3-display-container">
+    <span onclick="this.parentElement.style.display='none'"
+          class="w3-button w3-blue w3-large w3-display-topright">&times;</span>
+    <h3>Instrucciones</h3>
+    <div class="flex-container">
+        <div><span>1</span><h1>Escoger que categoria de producto quieres</h1> <img src='/dist/images/modal/scategoria.gif' /></div>
+        <div><span>2</span><h1>Seleccionar cantidad de producto a pedir</h1> <img src='/dist/images/modal/contador.gif' /></div>
+        <div><span>3</span><h1>Agregar al carrito con el boton FAV</h1> <img src='/dist/images/modal/fav.gif' /></div>
+        <div><span>4</span><h1>Realizar pedido mediante whatsapp</h1> <img src='/dist/images/modal/pedido2.gif' /></div>
+    </div>
+</div>
+<div id="banner-wrapper">
+    <div id="banner" class="box container">
+        <div class="row">
+            <div class="7u 12u(medium)">
+                <h2>La mejor carne de Murcia.</h2>
+            </div>
+            <div class="5u 12u(medium)">
+                <ul>
+                    <li><a (click)="moveToWhatsapp()" class="button big icon fa-arrow-circle-right">Haz tu pedido</a></li>
+                    <li><a (click)="clickInstrucciones()" class="button alt big icon fa-question-circle">Instrucciones</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="wrapper">
+  <css-carousel></css-carousel>
+</div>
